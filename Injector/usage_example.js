@@ -59,7 +59,7 @@ class Main {
 Main.inject = ['car'];
 
 
-const container = new Container(new Injector);
+const container = new Container();
 
 container.register('wheels', Wheels);
 container.register('engine', Engine);
