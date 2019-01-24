@@ -19,6 +19,12 @@ class Wheels {
   }
 }
 
+function injectable(target) {
+  container.register(target)
+
+  return target;
+}
+
 
 
 class Engine {
@@ -44,6 +50,9 @@ class Piston {
 class Main {
   constructor(car) {
     this.car = car;
+  }
+
+  execute() {
     this.car.run();
   }
 }
@@ -56,5 +65,6 @@ container.register('wheels', Wheels);
 container.register('engine', Engine);
 container.register('car', Car);
 container.register('piston', Piston);
+container.register('main', Main);
 
-container.run(Main);
+container.run('main');

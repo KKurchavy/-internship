@@ -5,7 +5,7 @@ class Injector {
 
   register(token, clazz) {
     if (typeof clazz !== 'function') {
-      throw new Error('Is not a function');
+      throw new Error(`${clazz} is not a function`);
     }
 
     this.map.set(token, clazz);
@@ -17,30 +17,27 @@ class Injector {
 
   get(token) {
     if (!this.map.get(token)) {
-      throw new Error('no dependency instanceect');
+      throw new Error(`There is no provider for ${token}`);
     }
 
     const clazz = this.map.get(token);
     
-    if (clazz.inject) {
-      const deps = [];
-
-      clazz.inject.map((dep) => {
-        deps.push(this.get(dep));
-      });
-
-      return new clazz(...deps);
-
-    } else {
+    if (!clazz.inject) {
       return new clazz();
     }
+
+    const deps = clazz.inject.map((dep) => {
+      return this.get(dep);
+    });
+
+    return new clazz(...deps);
 
   }
 }
 
 class Container {
-  constructor(injector) {
-    this.injector = injector;
+  constructor() {
+    this.injector = new Injector();
   }
 
   register(token, clazz) {
@@ -48,18 +45,12 @@ class Container {
   }
 
   get(token) {
-    this.injector.get(token);
+    return this.injector.get(token);
   }
 
-  _delete(token) {
-    this.injector.delete(token);
-  }
-
-  run(clazz) {
-    const token = 'temporary token';
-
-    this.register(token, clazz);
-    this.get(token);
-    this._delete(token)
+  run(token) {
+    const instance = this.get(token);
+    
+    instance.execute();
   }
 }
