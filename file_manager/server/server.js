@@ -1,18 +1,18 @@
-const { HandlersPool } = require('./handlersPool/pool');
-const {Express} = require('./express/express');
+const { ServerManager } = require('./server_manager/manager');
+const { getHandler } = require('./handlers/getHandler');
+const { postHandler } = require('./handlers/postHandler');
+const { putHandler } = require('./handlers/putHandler');
+const { deleteHandler } = require('./handlers/deleteHandler');
 
-
-const handlerPool = new HandlersPool();
-const express = new Express();
+const manager = new ServerManager();
 const PORT = 3300;
 
-express.route('/list', handlerPool.getHandler('GET'));
-express.route('/create', handlerPool.getHandler('POST'));
-express.route('/update', handlerPool.getHandler('PUT'));
-express.route('/delete', handlerPool.getHandler('DELETE'));
+manager.route('/list', 'GET', getHandler);
+manager.route('/create', 'POST', postHandler);
+manager.route('/update', 'PUT', putHandler);
+manager.route('/delete', 'DELETE', deleteHandler);
 
-
-express.listen(PORT, err => {
+manager.listen(PORT, err => {
   if (err) {
     throw err;
   }
