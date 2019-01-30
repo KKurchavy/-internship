@@ -13,7 +13,7 @@ class FsPromises {
   writeFile(path, data) {
     return new Promise((resolve) => {
       fs.writeFile(path, data, (err) => {
-        resolve([err, true]);
+        resolve([err]);
       });
     });
   }
@@ -35,7 +35,7 @@ class FsPromises {
   unlink(path) {
     return new Promise((resolve) => {
       fs.unlink(path, (err) => {
-        resolve([err, true]);
+        resolve([err]);
       });
     })
   }

@@ -7,7 +7,7 @@ async function getFileListHandler(req, res) {
 
   if (error) {
     sendWithCode(res, 500);
-    throw error;
+    return;
   }
 
   res.writeHead(200, {

@@ -7,13 +7,14 @@ async function deleteFileHandler({ body }, res) {
   let [error] = await fsPromises.exists(path.join(PATH, body.fileName));
   if(error) {
     sendWithCode(res, 400);
-    throw error;
+    return;
   }
 
   [error] = await fsPromises.unlink(path.join(PATH, body.fileName));
+
   if(error) {
     sendWithCode(res, 500);
-    throw error;
+    return;
   }
 
   sendWithCode(res, 200);

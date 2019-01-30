@@ -8,7 +8,7 @@ async function createFileHandler({ body }, res) {
   
   if(error) {
     sendWithCode(res, 500);
-    throw error;
+    return;
   }
 
   sendWithCode(res, 201);
