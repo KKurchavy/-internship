@@ -5,11 +5,11 @@ const { sendWithCode } = require('./sendWithCode');
 
 function updateFileHandler({ body }, res) {
   fsPromises.exists(path.join(PATH, body.fileName))
-    .then(() => fsPromises.writeFile(path.join(PATH, body.fileName), body.fileData),
-      (err) => {
-        sendWithCode(res, 400);
-        throw err;
-      })
+    .then(() => fsPromises.writeFile(path.join(PATH, body.fileName), body.fileData))
+    .catch((err) => {
+      sendWithCode(res, 400);
+      throw err;
+    })
     .then(() => {
       sendWithCode(res, 200);
     })

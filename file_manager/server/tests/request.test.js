@@ -15,7 +15,7 @@ describe('file list requests', function () {
       });
   });
 
-  it('Sholud answer status 404 not found', function (done) {
+  it('Should answer status 404 not found', function (done) {
     chai.request('http://localhost:3300')
       .post('/list')
       .end(function (err, res) {
@@ -26,7 +26,7 @@ describe('file list requests', function () {
 });
 
 describe('file creation requests', function () {
-  it('Sholud answer status 201 created', function (done) {
+  it('Should answer status 201 created', function (done) {
     chai.request('http://localhost:3300')
       .post('/create')
       .send({ fileName: "super.js", fileData: "12345" })
@@ -36,7 +36,7 @@ describe('file creation requests', function () {
       });
   });
 
-  it('Sholud answer status 404', function (done) {
+  it('Should answer status 404', function (done) {
     chai.request('http://localhost:3300')
       .get('/create')
       .end(function (err, res) {
@@ -47,7 +47,7 @@ describe('file creation requests', function () {
 });
 
 describe('file edit requests', function () {
-  it('Sholud answer status 200 ok', function (done) {
+  it('Should answer status 200 ok', function (done) {
     chai.request('http://localhost:3300')
       .put('/update')
       .send({ fileName: "super.js", fileData: "1111111" })
@@ -57,7 +57,7 @@ describe('file edit requests', function () {
       });
   });
 
-  it('Sholud answer status 400', function (done) {
+  it('Should answer status 400', function (done) {
     chai.request('http://localhost:3300')
       .put('/update')
       .send({ fileName: "supeeeer.js", fileData: "1111111" })
@@ -69,7 +69,7 @@ describe('file edit requests', function () {
 });
 
 describe('file delete requests', function () {
-  it('Sholud answer status 200 ok', function (done) {
+  it('Should answer status 200 ok', function (done) {
     chai.request('http://localhost:3300')
       .delete('/delete')
       .send({ fileName: "super.js" })
@@ -79,7 +79,7 @@ describe('file delete requests', function () {
       });
   });
 
-  it('Sholud answer status 400', function (done) {
+  it('Should answer status 400', function (done) {
     chai.request('http://localhost:3300')
       .delete('/delete')
       .send({ fileName: "super.js" })
