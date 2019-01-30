@@ -7,19 +7,21 @@ class ServerManager {
   }
 
   listen(port, cb) {
-    this._createServer().listen(port, cb);
+    this._createServer().listen(port, cb)
   }
 
-  _parse(req, res, cb) {
-    let body = '';
+  _parse(req, res) {
+    return new Promise((resolve) => {
+      let body = '';
+      
+      req.on('data', (data) => {
+        body += data;
+      });
 
-    req.on('data', (data) => {
-      body += data;
-    });
-
-    req.on('end', () => {
-      req.body = JSON.parse(body);
-      cb(req, res);
+      req.on('end', () => {
+        req.body = JSON.parse(body);
+        resolve([req, res]);
+      });
     });
   }
 
@@ -33,7 +35,10 @@ class ServerManager {
         return;
       }
 
-      this._parse(req, res, handler);
+      this._parse(req, res)
+        .then((args) => {
+          handler(...args);
+        });
     })
   }
 

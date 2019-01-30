@@ -4,14 +4,25 @@ const PATH = './root';
 const { sendWithCode } = require('./sendWithCode');
 
 function postHandler({ body }, res) {
-  fs.writeFile(path.join(PATH, body.fileName), body.fileData, (err) => {
-    if (err) {
+  createFile(body.fileName, body.fileData)
+    .then(() => {
+      sendWithCode(res, 201);
+    })
+    .catch((err) => {
       sendWithCode(res, 500);
-      return;
-    }
+    })
+}
 
-    sendWithCode(res, 200);
-  });
+function createFile(fileName, fileData) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path.join(PATH, fileName), fileData, (err) => {
+      if (err) {
+        reject(err)
+      }
+
+      resolve();
+    });
+  })
 }
 
 exports.postHandler = postHandler;

@@ -4,19 +4,41 @@ const PATH = './root';
 const { sendWithCode } = require('./sendWithCode');
 
 function putHandler({ body }, res) {
-  fs.exists(path.join(PATH, body.fileName), (exists) => {
-    if (!exists) {
+  checkFileExistence(body.fileName)
+    .then(() => {
+      writeFile(body.fileName, body.fileData)
+        .then(() => {
+          sendWithCode(res, 200);
+        })
+        .catch(() => {
+          sendWithCode(res, 500);
+        })
+    })
+    .catch(() => {
       sendWithCode(res, 400);
-      return;
-    }
+    });
+}
 
-    fs.writeFile(path.join(PATH, body.fileName), body.fileData, (err) => {
+function writeFile(fileName, data) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(path.join(PATH, fileName), data, (err) => {
       if (err) {
-        sendWithCode(res, 500);
-        return;
+        reject();
       }
 
-      sendWithCode(res, 200);
+      resolve();
+    });
+  });
+}
+
+function checkFileExistence(fileName) {
+  return new Promise(() => {
+    fs.exists(path.join(PATH, fileName), (exists) => {
+      if (!exists) {
+        reject();
+      }
+
+      resolve();
     });
   });
 }
