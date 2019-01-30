@@ -19,7 +19,9 @@ class ServerManager {
       });
 
       req.on('end', () => {
-        req.body = JSON.parse(body);
+        if(body) {
+          req.body = JSON.parse(body);
+        }
         resolve([req, res]);
       });
     });
