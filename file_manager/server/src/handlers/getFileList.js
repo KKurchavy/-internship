@@ -1,19 +1,19 @@
 const PATH = './root';
 const { fsPromises } = require('../fsPromises/fs');
-const { sendWithCode } = require('./sendWithCode');
+const { resp$ } = require('../streams/streams');
 
-async function getFileListHandler(req, res) {
+async function getFileListHandler([req, res]) {
   const [error, files] = await fsPromises.readdir(PATH);
 
   if (error) {
-    sendWithCode(res, 500);
+    resp$.next([res, 500]);
     return;
   }
 
-  res.writeHead(200, {
-    'Content-Type': 'aplication/json'
-  });
-  res.end(JSON.stringify(files));
+  resp$.next([res, 200, {
+    header: { 'Content-Type': 'aplication/json' },
+    data: files
+  }]);
 }
 
 exports.getFileListHandler = getFileListHandler;
