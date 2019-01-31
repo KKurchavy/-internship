@@ -1,6 +1,6 @@
 const { resp$ } = require('../streams/streams');
 
-async function defaultHandler([req, res]) {
+async function fallbackHandler([req, res]) {
 
   if (req.isInvolved) {
     return;
@@ -9,4 +9,4 @@ async function defaultHandler([req, res]) {
   resp$.next([res, 404]);
 }
 
-exports.defaultHandler = defaultHandler;
+exports.fallbackHandler = fallbackHandler;

@@ -3,7 +3,7 @@ const { getFileListHandler } = require('./handlers/getFileList');
 const { createFileHandler } = require('./handlers/createFile');
 const { updateFileHandler } = require('./handlers/updateFile');
 const { deleteFileHandler } = require('./handlers/deleteFile');
-const { defaultHandler } = require('./handlers/defaultHandler');
+const { fallbackHandler } = require('./handlers/fallbackHandler');
 
 const manager = new ServerManager();
 const PORT = 3300;
@@ -12,7 +12,7 @@ manager.route('/list', 'GET')(getFileListHandler);
 manager.route('/create', 'POST')(createFileHandler);
 manager.route('/update', 'PUT')(updateFileHandler);
 manager.route('/delete', 'DELETE')(deleteFileHandler);
-manager.defaultRoute(defaultHandler);
+manager.defaultRoute(fallbackHandler);
 
 
 manager.listen(PORT, err => {
