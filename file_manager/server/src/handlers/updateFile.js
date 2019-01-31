@@ -1,23 +1,24 @@
 const path = require('path');
 const PATH = './root';
 const { fsPromises } = require('../fsPromises/fs');
-const { sendWithCode } = require('./sendWithCode');
+const { resp$ } = require('../streams/streams');
 
-async function updateFileHandler({ body }, res) {
+async function updateFileHandler([{ body }, res]) {
   let [error] = await fsPromises.exists(path.join(PATH, body.fileName));
+  
   if (error) {
-    sendWithCode(res, 400);
+    resp$.next([res, 400]);
     return;
   }
 
   [error] = await fsPromises.writeFile(path.join(PATH, body.fileName), body.fileData);
 
   if (error) {
-    sendWithCode(res, 500);
+    resp$.next([res, 500]);
     return;
   }
 
-  sendWithCode(res, 200);
+  resp$.next([res, 200]);
 }
 
 exports.updateFileHandler = updateFileHandler;
