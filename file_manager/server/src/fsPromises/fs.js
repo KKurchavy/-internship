@@ -3,49 +3,39 @@ const fs = require('fs');
 class FsPromises {
 
   readdir(path) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       fs.readdir(path, (err, files) => {
-        if (err) {
-          reject(err);
-        }
-  
-        resolve(files);
+        resolve([err, files]);
       });
     });    
   }
 
   writeFile(path, data) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       fs.writeFile(path, data, (err) => {
-        if (err) {
-          reject(err)
-        }
-  
-        resolve();
+        resolve([err]);
       });
     });
   }
 
   exists(path) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       fs.exists(path, (exists) => {
+        let error;
+
         if (!exists) {
-          reject(new Error(`[${path}] file does not exist`));
+          error = new Error(`[${path}] file does not exist`);
         }
   
-        resolve();
+        resolve([error, exists]);
       });
     });
   }
 
   unlink(path) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       fs.unlink(path, (err) => {
-        if (err) {
-          reject(err)
-        }
-  
-        resolve();
+        resolve([err]);
       });
     })
   }

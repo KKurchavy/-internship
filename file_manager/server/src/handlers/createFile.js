@@ -3,14 +3,15 @@ const PATH = './root';
 const { fsPromises } = require('../fsPromises/fs');
 const { sendWithCode } = require('./sendWithCode');
 
-function createFileHandler({ body }, res) {
-  fsPromises.writeFile(path.join(PATH, body.fileName), body.fileData)
-    .then(() => {
-      sendWithCode(res, 201);
-    })
-    .catch((err) => {
-      sendWithCode(res, 500);
-    })
+async function createFileHandler({ body }, res) {
+  const [error] = await fsPromises.writeFile(path.join(PATH, body.fileName), body.fileData);
+  
+  if(error) {
+    sendWithCode(res, 500);
+    return;
+  }
+
+  sendWithCode(res, 201);
 }
 
 exports.createFileHandler = createFileHandler;

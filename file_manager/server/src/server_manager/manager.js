@@ -28,7 +28,7 @@ class ServerManager {
   }
 
   _createServer() {
-    return http.createServer((req, res) => {
+    return http.createServer(async (req, res) => {
       const handler = this.pool.get(path.join(req.url, req.method));
 
       if (!handler) {
@@ -37,10 +37,7 @@ class ServerManager {
         return;
       }
 
-      this._parse(req, res)
-        .then((args) => {
-          handler(...args);
-        });
+      handler(... (await this._parse(req, res)));
     })
   }
 
