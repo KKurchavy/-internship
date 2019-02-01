@@ -1,17 +1,21 @@
 function sendWithCode([res, code, payload]) {
-  res.statusCode = code;
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept",
+    'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
+  }
 
   if(!payload) {
-    res.writeHead(code, {'Access-Control-Allow-Origin': '*'})
+    res.writeHead(code, headers); 
     res.end();
     
     return;
   }
-
+  
   res.writeHead(code, {
-    'Access-Control-Allow-Origin': '*',
+    ...headers,
     ...payload.header
-  })
+  });
   res.end(JSON.stringify(payload.data));
 }
 

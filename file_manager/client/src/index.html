@@ -1,41 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" href="./style/index.css">
+  <title>File Manager</title>
 </head>
+
 <body>
   <div class="main">
     <div class="list-box">
-      <ul class="list">
-        <li>File list:</li>
-      </ul>
+      <h2>File list:</h2>
+      
+      <ul class="list"></ul>
 
-      <button class="update-list">
+      <button class="update-list-button">
         update list
       </button>
     </div>
-    
+
     <div class="editor">
-      <div class="controll">
-        <td>
-          <th>create</th>
-          <th>update</th>
-          <th>delete</th>
-        </td>
+      
+      <div class="control-bar">
+        <table>
+          <tr>
+            <td class="red">create</td>
+            <td>update</td>
+            <td>delete</td>
+          </tr>
+        </table>
       </div>
 
       <div class="container">
-        <div class="create-controll">
-          <input type="text">
-          <textarea name="" id="" cols="30" rows="10"></textarea>         
+        <div class="create-control">
+          <input type="text" value="file name">
+          <textarea class="data" cols="30" rows="10"></textarea>
+          <button class="create-button">create</button>
         </div>
-        <div class="update-controll"></div>
-        <div class="delete-controll"></div>
+
+        <div class="update-control hidden">
+          <input type="text" value="file name">
+          <textarea class="data" cols="30" rows="10"></textarea>
+          <button class="update-button">update</button>
+        </div>
+
+        <div class="delete-control hidden">
+          <input type="text" value="file name">
+          <button class="delete-button">delete</button>
+        </div>
       </div>
+      
     </div>
   </div>
+  <script src="./app/constants/constants.js"></script>
+  <script src="./app/tools/server.tools.js"></script>
+  <script src="./app/handlers/updateList.js"></script>
+  <script src="./app/handlers/controlBarClick.handler.js"></script>
+  <script src="./app/handlers/createClick.handler.js"></script>
+  <script src="./app/handlers/updateClick.handler.js"></script>
+  <script src="./app/handlers/deleteClick.handler.js"></script>
+  <script src="./app/index.js"></script>
 </body>
+
 </html>

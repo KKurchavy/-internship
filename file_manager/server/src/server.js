@@ -4,6 +4,7 @@ const { createFileHandler } = require('./handlers/createFile');
 const { updateFileHandler } = require('./handlers/updateFile');
 const { deleteFileHandler } = require('./handlers/deleteFile');
 const { fallbackHandler } = require('./handlers/fallbackHandler');
+const { resp$ } = require('./streams/streams');
 
 const manager = new ServerManager();
 const PORT = 3300;
