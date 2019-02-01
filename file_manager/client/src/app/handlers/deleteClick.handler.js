@@ -6,5 +6,6 @@ function deleteClickHandler({ target }) {
     fileName: input.value
   }).then(() => {
     input.value = "";
+    updateList(LIST);
   })
 }

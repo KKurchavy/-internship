@@ -6,6 +6,11 @@ async function fallbackHandler([req, res]) {
     return;
   }
 
+  if(req.method === 'OPTIONS') {
+    resp$.next([res, 200]);
+    return;
+  }
+
   resp$.next([res, 404]);
 }
 

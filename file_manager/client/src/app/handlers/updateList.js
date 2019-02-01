@@ -1,7 +1,4 @@
-async function updateListClickHandler({ target }) {
-  const { parentElement } = target;
-  const list = parentElement.querySelector('ul');
-
+async function updateList(list) {
   const files = await  getRequest('http://localhost:3300/list');
 
   while(list.lastChild) {

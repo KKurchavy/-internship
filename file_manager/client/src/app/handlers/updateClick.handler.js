@@ -9,5 +9,6 @@ function updateClickHandler({ target }) {
   }).then(() => {
     input.value = "";
     textarea.value = "";
+    updateList(LIST);
   });
 }
