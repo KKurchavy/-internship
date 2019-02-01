@@ -10,8 +10,8 @@
 </head>
 
 <body>
-  <div class="main">
-    <div class="list-box">
+  <div class="flex-container">
+    <div class="list-box flex-column-container">
       <h2>File list:</h2>
       
       <ul class="list"></ul>
@@ -21,7 +21,7 @@
       </button>
     </div>
 
-    <div class="editor">
+    <div class="editor flex-column-container">
       
       <div class="control-bar">
         <table>
@@ -33,16 +33,16 @@
         </table>
       </div>
 
-      <div class="container">
+      <div class="input-container flex-column-container">
         <div class="create-control">
           <input type="text" value="file name">
-          <textarea class="data" cols="30" rows="10"></textarea>
+          <textarea></textarea>
           <button class="create-button">create</button>
         </div>
 
         <div class="update-control hidden">
           <input type="text" value="file name">
-          <textarea class="data" cols="30" rows="10"></textarea>
+          <textarea></textarea>
           <button class="update-button">update</button>
         </div>
 
