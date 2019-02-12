@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: start;
+  flex: 0.8;
+  border: 2px solid gray;
+  border-radius: 4px;
+}
+
+.control-bar {
+  display: flex;
+  flex: 0.15;
+  border-bottom: 2px solid gray;
+  justify-content: space-between;
+}
+
+.control-bar > button {
+  display: flex;
+  flex: 0.33;
+  flex-direction: row;
+  cursor: pointer;
+  background-color: darkslategray;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.input-panel {
+  display: flex;
+  flex: 0.85;
+}
