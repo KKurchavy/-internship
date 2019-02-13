@@ -55,7 +55,7 @@ export class FileListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(list => {
         this.fileList = list;
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
       });
   }
 }
