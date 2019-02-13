@@ -7,20 +7,15 @@
 div {
   display: flex;
   flex: 1;
-}
-
-div > form {
-  display: flex;
-  flex: 1;
   flex-direction: column;
 }
 
-div > form > input {
+div > input {
   flex: 0.1;
   margin: 8px;
 }
 
-div > form > button {
+div > button {
   margin: 8px;
   flex: 0.05;
   border: none;

@@ -1,19 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-file-editor',
   templateUrl: './file-editor.component.html',
-  styleUrls: ['./file-editor.component.css']
+  styleUrls: ['./file-editor.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FileEditorComponent implements OnInit {
-  public method: string;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  editMethod(method: string) {
-    this.method = method;
-  }
-}
+export class FileEditorComponent { }

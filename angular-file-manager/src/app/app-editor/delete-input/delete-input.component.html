@@ -1,7 +1,8 @@
 <div>
-    <form [formGroup]="deleteForm" (ngSubmit)="onSubmit()">
-        <input placeholder="file name" formControlName="name"/>
-        <button type="submit">delete</button>
-    </form>
-  </div>
-  
+  <input
+    placeholder="file name"
+    [formControl]="deleteControl"
+    (keyup.enter)="onSubmit()"
+  />
+  <button (click)="onSubmit()">delete</button>
+</div>

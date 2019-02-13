@@ -1,33 +1,38 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, ChangeDetectionStrategy, OnDestroy } from "@angular/core";
 import { FilesService } from "../../files.service";
 import { EventService } from "../../event.service";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormControl } from "@angular/forms";
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-delete-input",
   templateUrl: "./delete-input.component.html",
-  styleUrls: ["./delete-input.component.css"]
+  styleUrls: ["./delete-input.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DeleteInputComponent implements OnInit {
-  deleteForm = new FormGroup({
-    name: new FormControl("")
-  });
+export class DeleteInputComponent implements OnDestroy{
+  deleteControl = new FormControl("");
+  private subscription: Subscription;
 
   constructor(
     private fileService: FilesService,
     private eventService: EventService
   ) {}
-  
-  ngOnInit() {}
-
-  private deleteFile({ name }) {
-    this.fileService.deleteFile(name).subscribe(() => {
-      this.eventService.event.next("detete");
-    });
-  }
 
   onSubmit() {
-    this.deleteFile(this.deleteForm.value);
-    this.deleteForm.reset();
+    this.deleteFile(this.deleteControl.value);
+    this.deleteControl.reset();
+  }
+
+  ngOnDestroy() {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  private deleteFile(name: string) {
+    this.subscription = this.fileService.deleteFile(name).subscribe(() => {
+      this.eventService.event.next("detete");
+    });
   }
 }
