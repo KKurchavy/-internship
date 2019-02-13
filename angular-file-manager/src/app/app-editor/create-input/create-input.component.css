@@ -1,0 +1,36 @@
+:host {
+  display: flex;
+  flex: 1;
+  background-color: gainsboro;
+}
+
+div {
+  display: flex;
+  flex: 1;
+}
+
+div > form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+div > form > input {
+  flex: 0.1;
+  margin: 8px;
+}
+
+div > form > textarea {
+  flex: 0.85;
+  margin: 8px;
+}
+
+div > form > button {
+  margin: 8px;
+  flex: 0.05;
+  color: aliceblue;
+  background-color: #8BC34A;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}

@@ -1,0 +1,12 @@
+<div>
+
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <input placeholder="file name" formControlName="name"/>
+      <textarea placeholder="data" formControlName="data"></textarea>
+    
+      <button type="submit">
+        create
+      </button>
+  </form>
+  
+</div>

@@ -1,0 +1,10 @@
+<div>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        <input placeholder="file name" formControlName="name"/>
+        <textarea placeholder="data" formControlName="data"></textarea>
+      
+        <button type="submit">
+          update
+        </button>
+    </form>
+</div>

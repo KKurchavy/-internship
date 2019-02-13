@@ -1,0 +1,8 @@
+<div>
+  <input
+    placeholder="file name"
+    [formControl]="deleteControl"
+    (keyup.enter)="onSubmit()"
+  />
+  <button (click)="onSubmit()">delete</button>
+</div>
