@@ -1,17 +1,17 @@
-import { Component, ChangeDetectionStrategy, OnDestroy } from "@angular/core";
-import { FilesService } from "../../files.service";
-import { EventService } from "../../event.service";
-import { FormControl } from "@angular/forms";
+import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { FilesService } from '../../files.service';
+import { EventService } from '../../event.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-delete-input",
-  templateUrl: "./delete-input.component.html",
-  styleUrls: ["./delete-input.component.css"],
+  selector: 'app-delete-input',
+  templateUrl: './delete-input.component.html',
+  styleUrls: ['./delete-input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DeleteInputComponent implements OnDestroy{
-  deleteControl = new FormControl("");
+  deleteControl = new FormControl('');
   private subscription: Subscription;
 
   constructor(
@@ -32,7 +32,7 @@ export class DeleteInputComponent implements OnDestroy{
 
   private deleteFile(name: string) {
     this.subscription = this.fileService.deleteFile(name).subscribe(() => {
-      this.eventService.event.next("detete");
+      this.eventService.event.next('detete');
     });
   }
 }

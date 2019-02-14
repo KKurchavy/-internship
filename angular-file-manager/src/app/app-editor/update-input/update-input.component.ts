@@ -1,19 +1,19 @@
-import { Component, ChangeDetectionStrategy } from "@angular/core";
-import { FilesService } from "../../files.service";
-import { EventService } from "../../event.service";
-import { FormGroup, FormControl } from "@angular/forms";
-import { Subscription } from "rxjs";
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { FilesService } from '../../files.service';
+import { EventService } from '../../event.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-update-input",
-  templateUrl: "./update-input.component.html",
-  styleUrls: ["./update-input.component.css"],
+  selector: 'app-update-input',
+  templateUrl: './update-input.component.html',
+  styleUrls: ['./update-input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UpdateInputComponent {
   updateForm = new FormGroup({
-    name: new FormControl(""),
-    data: new FormControl("")
+    name: new FormControl(''),
+    data: new FormControl('')
   });
   private subscription: Subscription;
 
@@ -37,7 +37,7 @@ export class UpdateInputComponent {
     this.subscription = this.fileService
       .updateFile(name, data)
       .subscribe(() => {
-        this.eventService.event.next("update");
+        this.eventService.event.next('update');
       });
   }
 }

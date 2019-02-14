@@ -1,13 +1,13 @@
-import { Component, ChangeDetectionStrategy, OnDestroy } from "@angular/core";
-import { FormGroup, FormControl } from "@angular/forms";
-import { FilesService } from "../../files.service";
-import { EventService } from "../../event.service";
+import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { FilesService } from '../../files.service';
+import { EventService } from '../../event.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-create-input",
-  templateUrl: "./create-input.component.html",
-  styleUrls: ["./create-input.component.css"],
+  selector: 'app-create-input',
+  templateUrl: './create-input.component.html',
+  styleUrls: ['./create-input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateInputComponent implements OnDestroy {
@@ -16,11 +16,11 @@ export class CreateInputComponent implements OnDestroy {
     data: new FormControl('')
   });
   private subscription: Subscription;
-
+  
   constructor(
     private fileService: FilesService,
-    private eventService: EventService,
-  ) {}
+    private eventService: EventService
+  ) { }
   
   onSubmit() {
     this.createFile(this.createForm.value);
@@ -35,7 +35,7 @@ export class CreateInputComponent implements OnDestroy {
 
   private createFile({ name, data }) {
     this.subscription = this.fileService.createFile(name, data).subscribe(() => {
-      this.eventService.event.next("create");
+      this.eventService.event.next('create');
     });
   }
 }

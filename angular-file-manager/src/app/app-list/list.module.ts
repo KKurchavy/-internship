@@ -1,7 +1,7 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { FileListComponent } from "./file-list/file-list.component";
+import { FileListComponent } from './file-list/file-list.component';
 
 @NgModule({
   declarations: [FileListComponent],

@@ -1,13 +1,13 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from "@angular/core";
-import { FilesService } from "../../files.service";
-import { EventService } from "../../event.service";
-import { Observable, Subject, race } from "rxjs";
-import { switchMap, takeUntil } from "rxjs/operators";
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { FilesService } from '../../files.service';
+import { EventService } from '../../event.service';
+import { Observable, Subject, race } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: "app-file-list",
-  templateUrl: "./file-list.component.html",
-  styleUrls: ["./file-list.component.css"],
+  selector: 'app-file-list',
+  templateUrl: './file-list.component.html',
+  styleUrls: ['./file-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileListComponent implements OnInit, OnDestroy {
