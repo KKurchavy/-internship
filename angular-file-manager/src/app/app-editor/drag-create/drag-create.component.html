@@ -1,5 +1,6 @@
 <div 
-  [ngClass]="{over: dragoverflag}"
+  class="drop-box"
+  [class.over]="isOver"
   (drop)="onDropFile($event)"
   (dragover)="onDragOver($event)"
   (dragleave)="onDragLeave($event)">

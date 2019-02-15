@@ -1,0 +1,24 @@
+:host {
+  display: flex;
+  flex: 1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.method-control {
+  display: flex;
+  flex-direction: row;
+  flex: 0.1;
+}
+
+
+.method-control > button {
+  background-color: darksalmon;
+  border: 2px solid gainsboro;
+  cursor: pointer;
+  flex: 0.5;
+}

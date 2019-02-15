@@ -1,15 +1,17 @@
-import { Component } from "@angular/core";
-import { FilesService } from "src/app/files.service";
-import { EventService } from "src/app/event.service";
+import { Component, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { FilesService } from 'src/app/files.service';
+import { EventService } from 'src/app/event.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: "app-drag-create",
-  templateUrl: "./drag-create.component.html",
-  styleUrls: ["./drag-create.component.css"]
+  selector: 'app-drag-create',
+  templateUrl: './drag-create.component.html',
+  styleUrls: ['./drag-create.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DragCreateComponent {
-  dragoverflag: boolean = false;
-  private defaultData = "default data";
+export class DragCreateComponent implements OnDestroy {
+  isOver: boolean = false;
+  private subscription: Subscription;
 
   constructor(
     private filesService: FilesService,
@@ -19,32 +21,40 @@ export class DragCreateComponent {
   onDropFile(event: DragEvent) {
     const { files } = event.dataTransfer;
 
-    this.dragoverflag = false;
-    this.createFile(this.getFirstFile(files).name, this.defaultData);
+    this.isOver = false;
+    this.createFile(this.getFirstFile(files).name);
     this.preventAndStop(event);
   }
 
-  private createFile(name: string, data: string) {
-    this.filesService.createFile(name, data).subscribe(() => {
-      this.eventService.event.next("create");
-    });
-  }
-
   onDragOver(event: DragEvent) {
-    this.dragoverflag = true;
+    this.isOver = true;
     this.preventAndStop(event);
   }
 
   onDragLeave(event: DragEvent) {
-    this.dragoverflag = false;
+    this.isOver = false;
     this.preventAndStop(event);
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  private createFile(name: string) {
+    this.subscription = this.filesService
+      .createFile(name, 'DEFAULT DATA')
+      .subscribe(() => {
+        this.eventService.event.next('create');
+      });
   }
 
   private getFirstFile(files: FileList) {
     return files.item(0);
   }
 
-  private preventAndStop(event: DragEvent): void {
+  private preventAndStop(event: DragEvent) {
     event.stopPropagation();
     event.preventDefault();
   }

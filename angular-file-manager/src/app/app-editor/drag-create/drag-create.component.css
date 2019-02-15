@@ -4,7 +4,7 @@
   background-color: gainsboro;
 }
 
-:host > div {
+.drop-box {
   display: flex;
   flex: 1;
   margin: 8px;
@@ -14,6 +14,7 @@
 
 .over {
   background-color: #da862066;
+  cursor: alias;
 }
 
 .info {
