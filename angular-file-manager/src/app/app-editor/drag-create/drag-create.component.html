@@ -1,0 +1,7 @@
+<div 
+  [ngClass]="{over: dragoverflag}"
+  (drop)="onDropFile($event)"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)">
+  <p class="info">Drop file here</p>
+</div>
