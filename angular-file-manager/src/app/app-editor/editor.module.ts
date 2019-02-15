@@ -8,13 +8,17 @@ import { FileEditorComponent } from './file-editor/file-editor.component';
 import { CreateInputComponent } from './create-input/create-input.component';
 import { UpdateInputComponent } from './update-input/update-input.component';
 import { DeleteInputComponent } from './delete-input/delete-input.component';
+import { DragCreateComponent } from './drag-create/drag-create.component';
+import { CreationComponent } from './creation/creation.component';
 
 @NgModule({
   declarations: [
     FileEditorComponent,
+    CreationComponent,
     CreateInputComponent,
+    DragCreateComponent,
     UpdateInputComponent,
-    DeleteInputComponent
+    DeleteInputComponent,
   ],
   imports: [
     CommonModule,

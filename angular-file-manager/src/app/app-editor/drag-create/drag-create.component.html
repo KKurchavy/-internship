@@ -1,0 +1,8 @@
+<div 
+  class="drop-box"
+  [class.over]="isOver"
+  (drop)="onDropFile($event)"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave($event)">
+  <p class="info">Drop file here</p>
+</div>

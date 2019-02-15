@@ -1,0 +1,23 @@
+:host {
+  display: flex;
+  flex: 1;
+  background-color: gainsboro;
+}
+
+.drop-box {
+  display: flex;
+  flex: 1;
+  margin: 8px;
+  border: 2px dotted lightseagreen;
+  border-radius: 10px;
+}
+
+.over {
+  background-color: #da862066;
+  cursor: alias;
+}
+
+.info {
+  color: lightseagreen;
+  margin: auto;
+}

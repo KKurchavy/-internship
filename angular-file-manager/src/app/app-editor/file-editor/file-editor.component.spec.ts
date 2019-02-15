@@ -3,9 +3,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { FileEditorComponent } from './file-editor.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { CreateInputComponent } from '../create-input/create-input.component';
 import { UpdateInputComponent } from '../update-input/update-input.component';
 import { DeleteInputComponent } from '../delete-input/delete-input.component';
+import { CreationComponent } from '../creation/creation.component';
+import { CreateInputComponent } from '../create-input/create-input.component';
+import { DragCreateComponent } from '../drag-create/drag-create.component';
 
 describe('FileEditorComponent', () => {
   let component: FileEditorComponent;
@@ -16,8 +18,10 @@ describe('FileEditorComponent', () => {
       imports: [ AppRoutingModule, ReactiveFormsModule ],
       declarations: [ 
         FileEditorComponent,
-        CreateInputComponent,
+        CreationComponent,
         UpdateInputComponent,
+        CreateInputComponent,
+        DragCreateComponent,
         DeleteInputComponent
       ]
     })
